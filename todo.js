@@ -6,7 +6,7 @@ const TODOS_LS = 'toDos';
 
 let toDosArr = [];
 
-
+//forEach 랑 filter는 list에 있는 모든 item을 위한 함수를 실행시키는 것
 
 function deleteToDo(event){
     const btn = event.target.parentNode;
