@@ -4,7 +4,20 @@ const todolist = document.querySelector(".js-toDoList");
 
 const TODOS_LS = 'toDos';
 
-const toDosArr = [];
+let toDosArr = [];
+
+
+
+function deleteToDo(event){
+    const btn = event.target.parentNode;
+    todolist.removeChild(btn);
+    const cleanToDos= toDosArr.filter(function(toDo){
+        return toDo.id !== parseInt(btn.id);
+    });
+    //filter는 array의 모든 아이템을 통해 함수를 실행하고 true인 아이템들만 가지고 새로운 array만든다.
+    toDosArr=cleanToDos;
+    saveToDos();
+}
 
 function saveToDos(){
     localStorage.setItem(TODOS_LS,JSON.stringify(toDosArr));
@@ -16,6 +29,7 @@ function paintToDo(text){
     delBtn.innerText= "❌";
     const span = document.createElement("span");
     const liId = toDosArr.length+1;
+    delBtn.addEventListener("click",deleteToDo);
 
     span.innerText =text;
     li.appendChild(delBtn);
